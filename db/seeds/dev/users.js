@@ -1,8 +1,8 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('users').del()
-    .then(() => knex('favorites').del())
+  return knex('favorites').del()
+    .then(() => knex('users').del())
 
     .then(() => {
       return Promise.all([
