@@ -3,19 +3,22 @@ class HourlyForecast {
   constructor(forecast){
     this.summary = forecast.hourly.summary //?
     this.icon = forecast.hourly.icon  //?
-    this.time = forecast.hourly.data[0].time
-    this.summary = forecast.hourly.data[0].summary
-    this.icon = forecast.hourly.data[0].icon
-    this.precipIntensity = forecast.hourly.data[0].precipIntensity
-    this.precipProbability = forecast.hourly.data[0].precipProbability
-    this.temperature = forecast.hourly.data[0].temperature
-    this.humidity = forecast.hourly.data[0].humidity
-    this.pressure = forecast.hourly.data[0].pressure
-    this.windSpeed = forecast.hourly.data[0].windSpeed
-    this.windGust = forecast.hourly.data[0].windGust
-    this.windBearing = forecast.hourly.data[0].windBearing
-    this.cloudCover = forecast.hourly.data[0].cloudCover
-    this.visibility = forecast.hourly.data[0].visibility
+    this.data = forecast.hourly.data.splice(0,8).map((hour) => {
+      return {
+        time: hour.time,
+        summary: hour.summary,
+        icon: hour.icon,
+        precipIntensity: hour.precipIntensity,
+        precipProbability: hour.precipProbability,
+        temperatur: hour.temperature,
+        humidity: hour.humidity,
+        pressure: hour.pressure,
+        windSpeed: hour.windSpeed,
+        windGust: hour.windGust,
+        windBearing: hour.windBearing,
+        cloudCover: hour.cloudCover,
+        visibility: hour.visibility }
+    });
   }
 }
 

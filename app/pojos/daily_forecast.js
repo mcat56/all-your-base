@@ -3,26 +3,29 @@ class DailyForecast {
   constructor(forecast){
     this.icon = forecast.daily.icon  //?
     this.summary = forecast.daily.summary //?
-    this.time = forecast.daily.data[0].time
-    this.summary = forecast.daily.data[0].summary
-    this.icon = forecast.daily.data[0].icon
-    this.sunriseTime = forecast.daily.data[0].sunriseTime
-    this.sunsetTime = forecast.daily.data[0].sunsetTime
-    this.precipIntensity = forecast.daily.data[0].precipIntensity
-    this.precipIntensityMax = forecast.daily.data[0].precipIntensityMax
-    this.precipIntensityMaxTime = forecast.daily.data[0].precipIntensityMaxTime
-    this.precipProbability = forecast.daily.data[0].precipProbability
-    this.precipType = forecast.daily.data[0].precipType
-    this.temperatureHigh = forecast.daily.data[0].temperatureHigh
-    this.temperatureLow = forecast.daily.data[0].temperatureLow
-    this.humidity = forecast.daily.data[0].humidity
-    this.pressure = forecast.daily.data[0].pressure
-    this.windSpeed = forecast.daily.data[0].windSpeed
-    this.windGust = forecast.daily.data[0].windGust
-    this.cloudCover = forecast.daily.data[0].cloudCover
-    this.visibility = forecast.daily.data[0].visibility
-    this.temperatureMin = forecast.daily.data[0].temperatureMin
-    this.temperatureMax = forecast.daily.data[0].temperatureMax
+    this.data = forecast.daily.data.splice(0,7).map((day) => {
+      return {
+        time: day.time,
+        summary: day.summary,
+        icon: day.icon,
+        sunriseTime: day.sunriseTime,
+        sunsetTime: day.sunsetTime,
+        precipIntensity: day.precipIntensity,
+        precipIntensityMax: day.precipIntensityMax,
+        precipIntensityMaxTime: day.precipIntensityMaxTime,
+        precipProbability: day.precipProbability,
+        precipType: day.precipType,
+        temperatureHigh: day.temperatureHigh,
+        temperatureLow: day.temperatureLow,
+        humidity: day.humidity,
+        pressure: day.pressure,
+        windSpeed: day.windSpeed,
+        windGust: day.windGust,
+        cloudCover: day.cloudCover,
+        visibility: day.visibility,
+        temperatureMin: day.temperatureMin,
+        temperatureMax: day.temperatureMax }
+    })
   }
 }
 
