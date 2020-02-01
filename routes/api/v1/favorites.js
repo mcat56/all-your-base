@@ -38,11 +38,11 @@ router.get('/', (req, res) => {
           getFavorites()
         })
         .catch((error) => {
-          res.status(500).json({error_message: error});
+          res.status(500).json({error_message: error.message});
         });
     })
     .catch((error) => {
-      res.status(500).json({error_message: error});
+      res.status(500).json({error_message: error.message});
     })
 });
 
@@ -60,11 +60,11 @@ router.post('/', (req, res) => {
         res.status(200).json({ message: `${location} has been added to your favorites`})
       })
       .catch((error) => {
-        res.status(500).json({message: error})
+        res.status(500).json({message: error.message})
       })
     })
     .catch((error) => {
-      res.status(500).json({ message: error })
+      res.status(500).json({ message: error.message })
     })
 });
 
@@ -82,11 +82,11 @@ router.delete('/', (req, res) => {
         res.status(204).send();
       })
       .catch((error) => {
-        res.status(500).json({message: error})
+        res.status(500).json({message: error.message})
       })
     })
     .catch((error) => {
-      res.status(500).json({ message: error })
+      res.status(500).json({ message: error.message })
     })
 });
 
