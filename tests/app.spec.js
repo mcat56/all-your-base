@@ -1,6 +1,8 @@
 var shell = require('shelljs');
 var request = require("supertest");
 var app = require('../app');
+const uuid = require('uuid');
+const bcrypt = require('bcrypt');
 
 const environment = process.env.NODE_ENV || 'test';
 const configuration = require('../knexfile')[environment];
@@ -64,6 +66,14 @@ describe('Test favorite endpoint', () => {
 
       expect(res.status).toBe(200)
   })
+  test('it should post favorite', async () => {
+    const res = await request(app)
+      .post('/api/v1/favorites')
+      .send({api_key: '123456897', location: 'seattle,wa'})
+
+      expect(res.status).toBe(201)
+      expect(res.body.message).toBe('Seattle, WA has been added to your favorites')
+  })
 })
 
 describe('users', () => {
@@ -92,6 +102,25 @@ describe('users', () => {
 
       expect(res.body[0]).toHaveProperty('api_key');
       expect(res.body[0].api_key).toBe('123456897');
+    })
+  })
+})
+
+
+describe('test user post endpoint', () => {
+  it('tests post user', async () => {
+    const res = await request(app).post('/api/v1/users').send({email: 'favoriteseason@gmail.com', password: 'fall'})
+
+    expect(res.status).toBe(201);
+    expect(res.body.success).toBe('Account created');
+
+    async function getUser() {
+      var user = await database('users').orderBy('created_at').limit(1).select()
+      return user
+    }
+    getUser()
+    .then((user) => {
+      expect(user.email).toBe('favoriteseasons@gmail.com')
     })
   })
 })

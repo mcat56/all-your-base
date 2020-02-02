@@ -18,18 +18,21 @@ router.get('/', (req, res) => {
     });
 });
 
+
 router.post('/', (req, res) => {
   if (req.body.password && req.body.email) {
-    bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-      database('users').insert({ email: req.body.email, password: hash, api_key: uuid.v4()})
+    async function insertUser(hash) {
+      let user = await database('users').insert({ email: req.body.email, password: hash, api_key: uuid.v4()})
+      return user
+    }
+    insertUser()
+    bcrypt.hash(req.body.password, saltRounds).then(function(hash) {
+      insertUser(hash)
       .then((user) => {
         res.status(201).json({ success: 'Account created'});
       })
       .catch((error) => {
-        res.status(500).json({error_message: error.message});
-      })
-      .catch((err) => {
-        res.status(400).json({error_message: err.message})
+        res.status(500).json({error_message: error.message})
       })
     });
   } else {

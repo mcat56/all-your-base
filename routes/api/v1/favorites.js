@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
     .then((user) => {
       database('favorites').where({user_id: user.id}).select()
         .then((favorites) => {
-          console.log(favorites)
           let locations = []
           favorites.forEach((favorite) => {
             locations.push(favorite.location)
@@ -31,7 +30,6 @@ router.get('/', (req, res) => {
             })
             Promise.all(faves)
               .then((fave_promises) => {
-                console.log(fave_promises)
                 res.status(200).json(fave_promises);
               })
           }
@@ -53,11 +51,13 @@ router.post('/', (req, res) => {
     return user
   }
   location = req.body.location
+  capital = location.split(',')[0][0].toUpperCase()
+  formatted_location = location.split(',')[0].replace(/^./, capital) + ', ' + location.split(',')[1].toUpperCase()
   getUser()
     .then((user) => {
       database('favorites').insert({ location: location, user_id: user.id }, 'location')
       .then((location) => {
-        res.status(201).json({ message: `${location} has been added to your favorites`})
+        res.status(201).json({ message: `${formatted_location} has been added to your favorites`})
       })
       .catch((error) => {
         res.status(500).json({message: error.message})
