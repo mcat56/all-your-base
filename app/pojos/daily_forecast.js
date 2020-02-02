@@ -30,29 +30,3 @@ class DailyForecast {
 }
 
 module.exports = DailyForecast;
-    // OR
-// const dailyForecast = (dailyForecast) =>
-//   ({
-//     summary:  dailyForecast.summary, //?
-//     icon:  dailyForecast.icon,  //?
-//     time:  dailyForecast.time,
-//     summary:  dailyForecast.summary,
-//     icon:  dailyForecast.icon,
-//     sunriseTime:  dailyForecast.sunriseTime,
-//     sunsetTime:  dailyForecast.sunsetTime,
-//     precipIntensity:  dailyForecast.precipIntensity,
-//     precipIntensityMax:  dailyForecast.precipIntensityMax,
-//     precipIntensityMaxTime:  dailyForecast.precipIntensityMaxTime,
-//     precipProbability:  dailyForecast.precipProbability,
-//     precipType:  dailyForecast.precipType,
-//     temperatureHigh:  dailyForecast.temperatureHigh,
-//     temperatureLow:  dailyForecast.temperatureLow,
-//     humidity:  dailyForecast.humidity,
-//     pressure:  dailyForecast.pressure,
-//     windSpeed:  dailyForecast.windSpeed,
-//     windGust:  dailyForecast.windGust,
-//     cloudCover:  dailyForecast.cloudCover,
-//     visibility:  dailyForecast.visibility,
-//     temperatureMin:  dailyForecast.temperatureMin,
-//     temperatureMax:  dailyForecast.temperatureMax,
-//   })

@@ -20,7 +20,7 @@ class ForecastService {
     })
     .catch((error) => {
       console.log({error:error, location:'getGeInfo'});
-      return {error_message: error};
+      return {error_message: error.message};
     })
   };
 
@@ -38,7 +38,7 @@ class ForecastService {
       })
     .catch((error) => {
       console.log({error:error, location: 'getFullForecast'});
-      return {error_message: error}
+      return {error_message: error.message}
     })
   };
 
@@ -54,7 +54,7 @@ class ForecastService {
     .then((forecast) => {
       return forecast
     })
-    .catch((error) =>{ return {error_message: error}})
+    .catch((error) =>{ return {error_message: error.message}})
   };
 
 }
