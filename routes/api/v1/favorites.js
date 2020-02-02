@@ -57,7 +57,7 @@ router.post('/', (req, res) => {
     .then((user) => {
       database('favorites').insert({ location: location, user_id: user.id }, 'location')
       .then((location) => {
-        res.status(200).json({ message: `${location} has been added to your favorites`})
+        res.status(201).json({ message: `${location} has been added to your favorites`})
       })
       .catch((error) => {
         res.status(500).json({message: error.message})
