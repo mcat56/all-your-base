@@ -8,9 +8,9 @@ exports.seed = function(knex) {
       return Promise.all([
 
         knex('users').insert([
-          {api_key: '123456789', email: 'whereswaldo123@gmail.com' },
-          {api_key: '987654321', email: 'carmensandiego456@gmail.com' },
-          {api_key: '024681357', email: 'harrietthespy789@gmail.com' }
+          {api_key: '123456789', email: 'whereswaldo123@gmail.com', password: 'seemenot' },
+          {api_key: '987654321', email: 'carmensandiego456@gmail.com', password: 'catchmeifyoucan' },
+          {api_key: '024681357', email: 'harrietthespy789@gmail.com', password: 'doubleagent' }
         ], 'id')
         .then(users => {
           return knex('favorites').insert([
