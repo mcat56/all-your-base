@@ -23,14 +23,11 @@ router.get('/', (req, res) => {
           res.status(200).send(forecast);
         }
         getForecast()
-      } else if (!req.body.api_key ){
-        res.status(401).json({error_message: 'Unauthorized request' })
       } else if (!req.query.location){
         res.status(400).json({error_message: 'Location required' })
       }
     })
     .catch((error) => {
-      console.log({error:error, location: 'forecast get'});
       res.status(401).json({error_message: 'Unauthorized request' })
     })
 })

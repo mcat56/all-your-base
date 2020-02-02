@@ -19,7 +19,6 @@ class ForecastService {
       return {coordinate: coordinate, location: location_obj}
     })
     .catch((error) => {
-      console.log({error:error, location:'getGeInfo'});
       return {error_message: error.message};
     })
   };
@@ -37,7 +36,6 @@ class ForecastService {
         return forecast
       })
     .catch((error) => {
-      console.log({error:error, location: 'getFullForecast'});
       return {error_message: error.message}
     })
   };
